@@ -2,6 +2,8 @@
 #include <ArduinoWebsockets.h>
 #include <ArduinoJson.h>
 
+#include "Arduino.h"
+#include <analogWrite.h>
 #define WIFI_SSID "" // change with your own wifi ssid
 #define WIFI_PASS "" // change with your own wifi password
 
@@ -79,29 +81,34 @@ void loop() {
 }
 
 
-void left() { 
+void left() { // 左轉
 
   digitalWrite(Lmotor1Pin1, LOW);
   digitalWrite(Rmotor1Pin1, HIGH);
+  analogWrite(Lenable1Pin, 100);
   digitalWrite(Lmotor1Pin2, LOW);
   digitalWrite(Rmotor1Pin2, LOW);
+  analogWrite(Renable1Pin, 100);
 }
 
 void right() { 
 
   digitalWrite(Lmotor1Pin1, LOW);
   digitalWrite(Rmotor1Pin1, LOW);
+  analogWrite(Lenable1Pin, 100);
   digitalWrite(Lmotor1Pin2, HIGH);
   digitalWrite(Rmotor1Pin2, LOW);
-
+  analogWrite(Renable1Pin, 100);
 }
 
 void up() { 
 
   digitalWrite(Lmotor1Pin1, HIGH);
   digitalWrite(Rmotor1Pin1, LOW);
+  analogWrite(Lenable1Pin, 100);
   digitalWrite(Lmotor1Pin2, LOW);
   digitalWrite(Rmotor1Pin2, HIGH);
+  analogWrite(Renable1Pin, 100);
 }
 
 
@@ -109,10 +116,11 @@ void down() {
 
   digitalWrite(Lmotor1Pin1, LOW);
   digitalWrite(Rmotor1Pin1, HIGH);
+    analogWrite(Lenable1Pin, 100);
   digitalWrite(Lmotor1Pin2, HIGH);
   digitalWrite(Rmotor1Pin2, LOW);
+    analogWrite(Renable1Pin, 100);
 }
-
 void ConnectWebSocket(){
       client.setInsecure();
       client.onMessage(onMessageCallback);
